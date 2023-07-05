@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://open.spotify.com"
+axios.defaults.baseURL = "https://api.spotify.com/v1"
 
 const CRIENT_ID = import.meta.env.VITE_API_CRIENT_ID;
 const CRIENT_SECRET = import.meta.env.VITE_API_CRIENT_SECRET;
@@ -19,6 +19,8 @@ const getToken = async () => {
   }
 
   fetch('https://accounts.spotify.com/api/token', authParameters)
+    .then(result => result.json())
+    .then(data => console.log(data))
 };
 
 export {

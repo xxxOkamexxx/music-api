@@ -1,5 +1,11 @@
+import { useEffect } from "react"
+import { getToken } from "./service/spotifyAPI"
+
 
 function App() {
+  useEffect(() => {
+    getToken()
+  },[])
 
   return (
     <>
