@@ -8,7 +8,7 @@ const CRIENT_SECRET = import.meta.env.VITE_API_CRIENT_SECRET;
 /**
  * Request an access token
  */
-const getToken = async () => {
+const getToken = async (): Promise<string> => {
   // API Access Token
   const authParameters = {
     method: 'POST',
@@ -18,9 +18,9 @@ const getToken = async () => {
     body: `grant_type=client_credentials&client_id=${CRIENT_ID}&client_secret=${CRIENT_SECRET}`
   }
 
-  fetch('https://accounts.spotify.com/api/token', authParameters)
-    .then(result => result.json())
-    .then(data => console.log(data))
+  const response = await fetch('https://accounts.spotify.com/api/token', authParameters);
+  const data = await response.json();
+  return data.access_token;
 };
 
 export {

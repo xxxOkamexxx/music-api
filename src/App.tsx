@@ -1,11 +1,20 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { getToken } from "./service/spotifyAPI"
 
 
 function App() {
+  const [token, setToken] = useState("");
+
   useEffect(() => {
-    getToken()
-  },[])
+    const fetchToken = async () => {
+      const fetchedToken = await getToken();
+      setToken(fetchedToken);
+    };
+
+    fetchToken();
+  }, []);
+
+  console.log(token); 
 
   return (
     <>
